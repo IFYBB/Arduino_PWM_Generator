@@ -1,3 +1,5 @@
+// 1.5 kHz, 2.5 us 
+
 void pwm6configure()
 {
   // TCCR4B configuration
