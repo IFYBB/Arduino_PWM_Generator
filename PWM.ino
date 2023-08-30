@@ -44,3 +44,47 @@ void loop() {
 
 }
 
+//-------------------------------------------------------------
+11Hz 1us
+
+  int buttonState10 = 0;
+
+void pwm6configure()
+{
+  // TCCR4B configuration
+  TCCR4B = 15; /* 4 sets 23437Hz */ // 6 = OK!
+  // TCCR4C configuration
+  TCCR4C = 0;
+
+  // TCCR4D configuration
+  TCCR4D = 0;
+
+  // PLL Configuration
+  PLLFRQ = (PLLFRQ & 0xCF) | 0x30;
+*/
+  // Terminal count for Timer 4 PWM
+  OCR4C = 255; // OCR4C = 255; // 
+}
+
+// Set PWM to D6 (Timer4 D)
+// Argument is PWM between 0 and 255
+void pwmSet6(int value)
+{
+  
+  OCR4D = value;  // Set PWM value
+  DDRD |= 1 << 7; // Set Output Mode D7
+  TCCR4C |= 0x09; // Activate channel D  
+}
+
+void setup() {
+  pwm6configure();
+  //pwmSet6(254);
+  pwmSet6(252);
+  pinMode(10, INPUT);
+}
+
+void loop() {
+
+}
+
+
